@@ -43,7 +43,7 @@ with tab1:
     st.plotly_chart(fig_host)
 
 with tab2:
-    st.title("Detailed Analysis")  # Updated title
+    st.title("Detailed Analysis") 
 
     st.subheader("Price Distribution by Listing Type")
     fig_price = px.box(df_filtered[df_filtered["price"] < 600], x="room_type", y="price")
