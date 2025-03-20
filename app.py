@@ -42,11 +42,6 @@ with tab1:
     st.subheader("Top 10 Hosts")
     st.plotly_chart(fig_host)
     
-        st.subheader("Relationship Between Listing Type and Number of People")
-        fig_accommodates = px.box(df_filtered, x="room_type", y="accommodates", 
-                               title="Accommodation Capacity by Listing Type")
-        st.plotly_chart(fig_accommodates)
-
 
 
 with tab2:
@@ -64,6 +59,12 @@ with tab2:
     st.subheader("Relationship Between Reviews and Price")
     fig_scatter = px.scatter(df_filtered, x="number_of_reviews", y="price", color="room_type")
     st.plotly_chart(fig_scatter)
+
+    st.subheader("Relationship Between Listing Type and Number of People")
+    fig_accommodates = px.box(df_filtered, x="room_type", y="accommodates", 
+                               title="Accommodation Capacity by Listing Type")
+    st.plotly_chart(fig_accommodates)
+
 
 st.sidebar.text("Created by Julia Caballero Gomez")
 
