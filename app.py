@@ -4,8 +4,8 @@ import plotly.express as px
 
 st.set_page_config(layout="wide")
 
-st.title("Airbnb")
-st.markdown("Airbnb Analysis. By Julia Caballero.")
+st.title(f"Julia Caballero")
+st.markdown("Airbnb Analysis")
 
 df = pd.read_csv("airbnb.csv")
 
@@ -61,7 +61,7 @@ with tab2:
     st.plotly_chart(fig_scatter)
 
     st.subheader("Relationship Between Listing Type and Number of People")
-    fig_accommodates = px.box(df_filtered, x="room_type", y="accommodates", 
+    fig_accommodates = px.box(df_filtered, x="room_type", y="calculated_host_listings_count", 
                                title="Accommodation Capacity by Listing Type")
     st.plotly_chart(fig_accommodates)
 
