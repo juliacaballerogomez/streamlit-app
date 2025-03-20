@@ -41,6 +41,13 @@ with tab1:
     fig_host = px.bar(df_top10_host, x=0, y="host", orientation='h', hover_name="host_name")
     st.subheader("Top 10 Hosts")
     st.plotly_chart(fig_host)
+    
+        st.subheader("Relationship Between Listing Type and Number of People")
+        fig_accommodates = px.box(df_filtered, x="room_type", y="accommodates", 
+                               title="Accommodation Capacity by Listing Type")
+        st.plotly_chart(fig_accommodates)
+
+
 
 with tab2:
     st.title("Detailed Analysis") 
