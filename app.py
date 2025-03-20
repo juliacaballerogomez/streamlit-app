@@ -5,8 +5,7 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 st.title("Airbnb")
-st.markdown("Airbnb Analysis. Julia Caballero.")
-
+st.markdown("Airbnb Analysis. By Julia Caballero.")
 
 df = pd.read_csv("airbnb.csv")
 
@@ -17,17 +16,14 @@ neighbourhood_group = st.sidebar.multiselect("Select Neighbourhood Group", df["n
 neighbourhood = st.sidebar.multiselect("Select Neighbourhood", df["neighbourhood"].unique(), default=df["neighbourhood"].unique())
 room_type = st.sidebar.multiselect("Select Room Type", df["room_type"].unique(), default=df["room_type"].unique())
 
-
 df_filtered = df[
     (df["neighbourhood_group"].isin(neighbourhood_group)) &
     (df["neighbourhood"].isin(neighbourhood)) &
     (df["room_type"].isin(room_type))
 ]
 
-
 tab1, tab2 = st.tabs(["Overview", "Detailed Analysis"])
 
-# Overview Tab
 with tab1:
     col1, col2 = st.columns(2)
     with col1:
@@ -39,7 +35,6 @@ with tab1:
         fig_boxplot = px.box(df_filtered[df_filtered["price"] < 600], x="neighbourhood", y="price")
         st.plotly_chart(fig_boxplot)
 
-    
     df_host = df_filtered.groupby(["host_id", "host_name"]).size().reset_index()
     df_host["host"] = df_host["host_id"].astype(str) + "---" + df_host["host_name"]
     df_top10_host = df_host.sort_values(by=0, ascending=False).head(10)
@@ -47,8 +42,9 @@ with tab1:
     st.subheader("Top 10 Hosts")
     st.plotly_chart(fig_host)
 
-
 with tab2:
+    st.title("Detailed Analysis")  # Updated title
+
     st.subheader("Price Distribution by Listing Type")
     fig_price = px.box(df_filtered[df_filtered["price"] < 600], x="room_type", y="price")
     st.plotly_chart(fig_price)
@@ -62,4 +58,5 @@ with tab2:
     fig_scatter = px.scatter(df_filtered, x="number_of_reviews", y="price", color="room_type")
     st.plotly_chart(fig_scatter)
 
-st.sidebar.text("Dashboard Created by Julia Caballero Gomez")
+st.sidebar.text("Created by Julia Caballero Gomez")
+
